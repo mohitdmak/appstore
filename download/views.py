@@ -44,18 +44,18 @@ def release_download(request, app_name, version):
     _increment_count(ReleaseDownloadsByDate, release = None,    when = when)
 
     # Look up geographical information about the user's IP address
-    geoinfo = geoIP.city(ipaddr_long_to_str(ip4addr))
-    if geoinfo:
+    #geoinfo = geoIP.city(ipaddr_long_to_str(ip4addr))
+    #if geoinfo:
         # Record the download in the user's country
-        country_geoloc, _ = GeoLoc.objects.get_or_create(country = geoinfo['country_code'], region = '', city = '')
-        _increment_count(AppDownloadsByGeoLoc, app = release.app, geoloc = country_geoloc)
-        _increment_count(AppDownloadsByGeoLoc, app = None,        geoloc = country_geoloc)
+     #   country_geoloc, _ = GeoLoc.objects.get_or_create(country = geoinfo['country_code'], region = '', city = '')
+        #_increment_count(AppDownloadsByGeoLoc, app = release.app, geoloc = country_geoloc)
+      ##  _increment_count(AppDownloadsByGeoLoc, app = None,        geoloc = country_geoloc)
 
-        if geoinfo.get('city'):
+        #if geoinfo.get('city'):
             # Record the download in the user's city
-            city_geoloc, _ = GeoLoc.objects.get_or_create(country = geoinfo['country_code'], region = geoinfo['region'], city = geoinfo['city'])
-            _increment_count(AppDownloadsByGeoLoc, app = release.app,  geoloc = city_geoloc)
-            _increment_count(AppDownloadsByGeoLoc, app = None,         geoloc = city_geoloc)
+         #   city_geoloc, _ = GeoLoc.objects.get_or_create(country = geoinfo['country_code'], region = geoinfo['region'], city = geoinfo['city'])
+          #  _increment_count(AppDownloadsByGeoLoc, app = release.app,  geoloc = city_geoloc)
+           # _increment_count(AppDownloadsByGeoLoc, app = None,         geoloc = city_geoloc)
 
     return HttpResponseRedirect(release.release_file_url)
 

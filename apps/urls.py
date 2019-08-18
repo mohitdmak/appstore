@@ -3,6 +3,8 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     url(r'^$',                                'apps.views.apps_default'),
     #url(r'^review/', include('review.urls')),
+    url(r'^all_$',                             'apps.views.all_apps_downloads',             name='all_apps_downloads'),
+    url(r'^all_new$',                             'apps.views.all_apps_newest',             name='all_apps_newest'),
     url(r'^all$',                             'apps.views.all_apps',             name='all_apps'),
     url(r'^wall$',                            'apps.views.wall_of_apps',         name='wall_of_apps'),
     url(r'^with_tag/(\w{1,100})$',            'apps.views.apps_with_tag',        name='tag_page'),

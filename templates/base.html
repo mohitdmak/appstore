@@ -47,7 +47,7 @@
               <li><a href="{% url 'submit-app' %}">Submit a 3.0 App</a></li>
 	      <!--     <li><a href="http://www.cytoscape.org/plugin_submit.html" target="_blank">Submit a 2.x Plugin</a></li> -->
               <li class="divider"></li>
-              <li><a target="_blank" href="http://wiki.cytoscape.org/Cytoscape_3/AppDeveloper">Guide to 3.0 App Development</a></li>
+              <li><a target="_blank" href="https://github.com/cytoscape/cytoscape/wiki/Cytoscape-3.0-App-Development">Guide to 3.0 App Development</a></li>
             </ul>
           </li>
           {# Search field #}
@@ -65,7 +65,7 @@
               <ul class="dropdown-menu">
                 {% if user.is_staff %}
                   <li><a href="{% url 'pending-apps' %}">Pending Apps</a></li>
-                  <li><a href="{% url 'cy2x-plugins' %}">2.x Plugins Management</a></li>
+		  <!--    <li><a href="{% url 'cy2x-plugins' %}">2.x Plugins Management</a></li> -->
                 {% endif %}
                 <li><a href="{% url 'logout' %}?next={{ request.get_full_path|escape }}">Sign out</a></li>
               </ul>

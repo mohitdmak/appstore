@@ -12,7 +12,7 @@ try:
     from conf.dbs import *
     from conf.apikeys import *
     from conf.socialauth import *
-    from conf.geoip import *
+    # from conf.geoip import *
     SITE_DIR ="/var/www/CyAppStore/"
 except:
     from conf.mock import *
@@ -214,4 +214,5 @@ LOGGING = {
             'propagate': True,
         },
     }
-    }
+}
+GEOIP_PATH = "/tmp/"

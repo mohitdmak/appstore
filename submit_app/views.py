@@ -334,8 +334,7 @@ def _update_app_page(request_post):
 _Cy2xPluginsActions = {
     'plugins_xml': _forward_plugins_xml,
     'app_info': _app_info,
-    'update': _update_app_page,
-}
+    'update': _update_app_page,}
 
 @login_required
 def cy2x_plugins(request):

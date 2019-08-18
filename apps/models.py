@@ -5,7 +5,10 @@ import subprocess
 from os import mkdir, devnull
 import os.path
 from os.path import join as pathjoin
-from urllib.parse import urljoin
+try:
+    from urllib.parse import urljoin
+except:
+    from urlparse import urljoin
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -97,7 +100,11 @@ class App(models.Model):
             return False
         if user.is_staff or user.is_superuser:
             return True
-        return user in self.editors.all()
+        if user in self.editors.all():
+            return True
+        li =[usr.email for usr in self.editors.all()]
+        return user.email in li
+        
 
     def camelcase(self):
         return ' '.join([c for c in camel_case_split(self.fullname)])

@@ -104,6 +104,25 @@ def all_apps(request):
 	}
 	return html_response('all_apps.html', c, request, processors = (_nav_panel_context, ))
 
+def all_apps_newest(request):
+        apps = App.objects.filter(active=True).order_by('-latest_release_date')
+        c = {
+                'apps': apps,
+                'navbar_selected_link': 'all',
+                'go_back_to': 'All Apps',
+        }
+        return html_response('all_apps.html', c, request, processors = (_nav_panel_context, ))
+
+
+def all_apps_downloads(request):
+        apps = App.objects.filter(active=True).order_by('downloads').reverse()
+        c = {
+                'apps': apps,
+                'navbar_selected_link': 'all',
+                'go_back_to': 'All Apps',
+        }
+        return html_response('all_apps.html', c, request, processors = (_nav_panel_context, ))
+
 def wall_of_apps(request):
 	nav_panel_context = _nav_panel_context(request)
 	tags = [(tag.fullname, tag.app_set.all()) for tag in nav_panel_context['top_tags']]
@@ -315,7 +334,7 @@ def _check_editor(app, request):
 	editor_email = request.POST.get('editor_email')
 	if not editor_email:
 		raise ValueError('no editor_email specified')
-	user = get_object_or_none(User, email=editor_email)
+	user = get_object_or_none(User, email=editor_email).last()
 	return user.username if user else False
 
 def _save_editors(app, request):
